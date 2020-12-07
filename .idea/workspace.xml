@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a169f0f-ea3f-494f-bf00-8c44412c51ad" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/terragrunt_plan.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/terragrunt_plan.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +31,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607354360908</updated>
-      <workItem from="1607354362306" duration="416000" />
+      <workItem from="1607354362306" duration="1193000" />
     </task>
     <servers />
   </component>
