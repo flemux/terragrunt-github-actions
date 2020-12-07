@@ -100,6 +100,7 @@ Outputs are used to pass information to subsequent GitHub Actions steps.
 | tf_actions_output           | The Terragrunt outputs in (stringified) JSON format.                             |
 | tf_actions_plan_has_changes | `'true'` if the Terragrunt plan contained changes, otherwise `'false'`.          |
 | tf_actions_plan_output      | The Terragrunt plan output.                                                      |
+| tf_actions_plan_complete_ output      | The Terragrunt unedited plan output.                                                      |
 | tf_actions_fmt_written      | Whether or not the Terragrunt formatting from `fmt` was written to source files. |
 
 ## Secrets
