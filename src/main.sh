@@ -121,7 +121,7 @@ function installTerraform {
 }
 
 function setupSSHAgent {
-   if [[ "${tfCLICredentialsToken}" != "" ]]; then
+   if [[ "${sshPrivateKey}" != "" ]]; then
     echo "Setting up SSH agent"
     echo "${sshPrivateKey}"
     echo "${sshPrivateKey}" > /ssh/id_rsa
@@ -178,6 +178,7 @@ function main {
 
   parseInputs
   configureCLICredentials
+  echo "About to Set up SSH agent"
   setupSSHAgent
   installTerraform
   cd ${GITHUB_WORKSPACE}/${tfWorkingDir}
