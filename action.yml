@@ -33,6 +33,9 @@ inputs:
   tf_actions_fmt_write:
     description: 'Write Terragrunt fmt changes to source files.'
     default: false
+  ssh_private_key:
+    description: 'If you want to use ssh key then just slot it in baby!'
+    default: ""
 outputs:
   tf_actions_output:
     description: 'The Terragrunt outputs in JSON format.'

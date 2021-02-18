@@ -64,6 +64,11 @@ function parseInputs {
     tfCLICredentialsToken=${INPUT_TF_ACTIONS_CLI_CREDENTIALS_TOKEN}
   fi
 
+  sshPrivateKey=""
+  if [ "${INPUT_SSH_PRIVATE_KEY}" != "" ]; then
+    sshPrivateKey=${INPUT_SSH_PRIVATE_KEY}
+  fi
+
   tfFmtWrite=0
   if [ "${INPUT_TF_ACTIONS_FMT_WRITE}" == "1" ] || [ "${INPUT_TF_ACTIONS_FMT_WRITE}" == "true" ]; then
     tfFmtWrite=1
@@ -115,6 +120,17 @@ function installTerraform {
   echo "Successfully unzipped Terraform v${tfVersion}"
 }
 
+function setupSSHAgent {
+   if [[ "${tfCLICredentialsToken}" != "" ]]; then
+    echo "Setting up SSH agent"
+    echo "${sshPrivateKey}"
+    echo "${sshPrivateKey}" > /ssh/id_rsa
+    chmod 600 /ssh/id_rsa
+    eval `ssh-agent` # create the process
+    ssh-add /ssh/id_rsa # add the key
+  fi
+}
+
 function installTerragrunt {
   if [[ "${tgVersion}" == "latest" ]]; then
     echo "Checking the latest version of Terragrunt"
@@ -162,6 +178,7 @@ function main {
 
   parseInputs
   configureCLICredentials
+  setupSSHAgent
   installTerraform
   cd ${GITHUB_WORKSPACE}/${tfWorkingDir}
 
