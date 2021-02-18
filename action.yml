@@ -36,6 +36,9 @@ inputs:
   ssh_private_key:
     description: 'If you want to use ssh key then just slot it in baby!'
     default: ""
+  known_hosts:
+    description: 'For ssh to work you need to set the known hosts, otherwise you will get the error "Host key verification failed."'
+    default: ""
 outputs:
   tf_actions_output:
     description: 'The Terragrunt outputs in JSON format.'

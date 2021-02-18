@@ -69,6 +69,11 @@ function parseInputs {
     sshPrivateKey=${INPUT_SSH_PRIVATE_KEY}
   fi
 
+  knownHosts=""
+  if [ "${INPUT_KNOWN_HOSTS}" != "" ]; then
+    knownHosts=${INPUT_KNOWN_HOSTS}
+  fi
+
   tfFmtWrite=0
   if [ "${INPUT_TF_ACTIONS_FMT_WRITE}" == "1" ] || [ "${INPUT_TF_ACTIONS_FMT_WRITE}" == "true" ]; then
     tfFmtWrite=1
@@ -123,8 +128,8 @@ function installTerraform {
 function setupSSHAgent {
    if [[ "${sshPrivateKey}" != "" ]]; then
     echo "Setting up SSH agent"
-    echo "${sshPrivateKey}"
     echo "${sshPrivateKey}" > /ssh/id_rsa
+    echo "${knownHosts}" > /ssh/known_hosts
     chmod 600 /ssh/id_rsa
     eval `ssh-agent` # create the process
     ssh-add /ssh/id_rsa # add the key
@@ -178,7 +183,6 @@ function main {
 
   parseInputs
   configureCLICredentials
-  echo "About to Set up SSH agent"
   setupSSHAgent
   installTerraform
   cd ${GITHUB_WORKSPACE}/${tfWorkingDir}
