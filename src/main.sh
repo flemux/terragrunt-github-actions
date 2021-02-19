@@ -135,6 +135,7 @@ function setupSSHAgent {
     ssh-keyscan github.com >> /ssh/known_hosts
 
     chmod 600 /ssh/id_rsa
+    chmod 644 /ssh/known_hosts
     eval `ssh-agent` # create the process
     ssh-add /ssh/id_rsa # add the key
   fi
